@@ -1,7 +1,7 @@
 import React from "react";
 import {ButtonUniversal} from "./ButtonUniversal";
 import s from "./Counter.module.css"
-import {DisplayCounter} from "./DisplayCounterPropsType";
+import {DisplayCounter} from "./DisplayCounter";
 
 type CounterPropsType = {
     counterValue: number
