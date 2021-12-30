@@ -1,0 +1,43 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 10px solid #ea6bf1;
+    width: 30%;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.container button {
+    height: 150px;
+    width: 150px;
+    font-size: 60px;
+    border-radius: 50%;
+    border: 7px solid #b51dbe;
+    font-family: "Times New Roman";
+}
+
+.standart {
+    border: 10px solid #ea6bf1;
+    width: 30%;
+    justify-content: center;
+    height: 100px;
+    font-size: 80px;
+    font-family: "Times New Roman";
+    border-radius: 5px;
+}
+
+.red {
+    color: #d24444;
+}
+
+.green {
+    color: #299b29;
+}

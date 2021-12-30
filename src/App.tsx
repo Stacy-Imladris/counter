@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Counter} from "./Counter";
+import s from "./Counter.module.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const startValue = 0
+    const endValue = 5
+    const [counterValue, setCounterValue] = useState<number>(startValue)
+    const incrementCounterValue = () => counterValue < endValue && setCounterValue(counterValue + 1)
+    const resetCounterValue = () => setCounterValue(startValue)
+    const styleForCounterValue = `${s.standart} ${counterValue === endValue ? s.red : s.green}`
+    const disabledResetButtonOrNot = counterValue === startValue
+    const disabledIncButtonOrNot = counterValue >= endValue
+
+    return (
+        <div className="App">
+            <Counter
+                counterValue={counterValue}
+                resetCounterValue={resetCounterValue}
+                incrementCounterValue={incrementCounterValue}
+                disabledResetButtonOrNot={disabledResetButtonOrNot}
+                disabledIncButtonOrNot={disabledIncButtonOrNot}
+                styleForCounterValue={styleForCounterValue}
+            />
+        </div>
+    );
 }
 
 export default App;
