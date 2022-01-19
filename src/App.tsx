@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import s from "./components/Counter/Counter.module.css";
@@ -22,6 +22,19 @@ function App() {
     const errorHandler = (error: string) => {
         setError(error)
     }
+    useEffect(() => {
+        const startValueAsString = localStorage.getItem('startValue')
+        const maxValueAsString = localStorage.getItem('maxValue')
+        if (startValueAsString && maxValueAsString) {
+            setStartValue(JSON.parse(startValueAsString))
+            setMaxValue(JSON.parse(maxValueAsString))
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('startValue', JSON.stringify(startValue))
+        localStorage.setItem('maxValue', JSON.stringify(maxValue))
+    }, [startValue, maxValue])
 
     return (
         <div className="App">

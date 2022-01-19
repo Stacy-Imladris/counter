@@ -13,39 +13,39 @@ export const SettingsCounter = (props: SettingsCounterPropsType) => {
 
     const [startValue, setStartValue] = useState<number>(props.startValue)
     const [maxValue, setMaxValue] = useState<number>(props.maxValue)
-    const [error, setError] = useState<string>('')
+    const [errorStyle, setErrorStyle] = useState<boolean>(false)
 
     const minValueHandler = (value: number) => {
+        setStartValue(value)
         if (value < maxValue){
-            setStartValue(value)
-            setError('Enter values and press \'set\'')
-            props.errorHandler(error)
+            setErrorStyle(false)
+            props.errorHandler('Enter values and press \'set\'')
         } else {
-            setError('Incorrect value!')
-            props.errorHandler(error)
+            setErrorStyle(true)
+            props.errorHandler('Incorrect value!')
         }
     }
     const maxValueHandler = (value: number) => {
+        setMaxValue(value)
         if (value > startValue){
-            setMaxValue(value)
-            setError('Enter values and press \'set\'')
-            props.errorHandler(error)
+            setErrorStyle(false)
+            props.errorHandler('Enter values and press \'set\'')
         } else {
-            setError('Incorrect value!')
-            props.errorHandler(error)
+            setErrorStyle(true)
+            props.errorHandler('Incorrect value!')
         }
     }
     const valueHandler = () => {
         props.valueHandler(startValue, maxValue)
-        setError('')
-        props.errorHandler(error)
+        setErrorStyle(false)
+        props.errorHandler('')
     }
 
     return (
         <div>
-            <InputUniversal type={'number'} title={'max value: '} defaultValue={props.maxValue} getValue={maxValueHandler}/>
-            <InputUniversal type={'number'} title={'start value: '} defaultValue={props.startValue} getValue={minValueHandler}/>
-            <ButtonUniversal name={'set'} disabledButtonOrNot={error === 'Incorrect value!'} onClickCallback={valueHandler}/>
+            <InputUniversal type={'number'} title={'max value: '} defaultValue={props.maxValue} getValue={maxValueHandler} style={errorStyle}/>
+            <InputUniversal type={'number'} title={'start value: '} defaultValue={props.startValue} getValue={minValueHandler} style={errorStyle}/>
+            <ButtonUniversal name={'set'} disabledButtonOrNot={errorStyle} onClickCallback={valueHandler}/>
         </div>
     );
 };
