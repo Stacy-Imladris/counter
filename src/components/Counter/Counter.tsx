@@ -1,5 +1,5 @@
 import React from "react";
-import {ButtonUniversal} from "./ButtonUniversal";
+import {ButtonUniversal} from "../ButtonUniversal";
 import s from "./Counter.module.css"
 import {DisplayCounter} from "./DisplayCounter";
 
@@ -10,23 +10,24 @@ type CounterPropsType = {
     disabledResetButtonOrNot: boolean
     disabledIncButtonOrNot: boolean
     styleForCounterValue: string
+    error: string
 }
 
 export const Counter = (props: CounterPropsType) => {
     return (
         <div className={s.main}>
             <div className={props.styleForCounterValue}>
-                <DisplayCounter counterValue={props.counterValue}/>
+                <DisplayCounter counterValue={props.counterValue} error={props.error}/>
             </div>
             <div className={s.container}>
                 <ButtonUniversal
                     name={'inc'}
-                    changeCounterValue={props.incrementCounterValue}
+                    onClickCallback={props.incrementCounterValue}
                     disabledButtonOrNot={props.disabledIncButtonOrNot}
                 />
                 <ButtonUniversal
                     name={'reset'}
-                    changeCounterValue={props.resetCounterValue}
+                    onClickCallback={props.resetCounterValue}
                     disabledButtonOrNot={props.disabledResetButtonOrNot}
                 />
             </div>
