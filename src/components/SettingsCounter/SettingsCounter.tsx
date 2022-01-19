@@ -17,7 +17,7 @@ export const SettingsCounter = (props: SettingsCounterPropsType) => {
 
     const minValueHandler = (value: number) => {
         setStartValue(value)
-        if (value < maxValue){
+        if (value < maxValue && value >= 0){
             setErrorStyle(false)
             props.errorHandler('Enter values and press \'set\'')
         } else {
@@ -27,7 +27,7 @@ export const SettingsCounter = (props: SettingsCounterPropsType) => {
     }
     const maxValueHandler = (value: number) => {
         setMaxValue(value)
-        if (value > startValue){
+        if (value > startValue && value > 0){
             setErrorStyle(false)
             props.errorHandler('Enter values and press \'set\'')
         } else {

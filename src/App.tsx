@@ -5,15 +5,17 @@ import s from "./components/Counter/Counter.module.css";
 import {SettingsCounter} from "./components/SettingsCounter/SettingsCounter";
 
 function App() {
-    const [startValue, setStartValue] = useState<number>(0)
-    const [maxValue, setMaxValue] = useState<number>(5)
+    const startValueAsString = localStorage.getItem('startValue')
+    const maxValueAsString = localStorage.getItem('maxValue')
+    const [startValue, setStartValue] = useState<number>(startValueAsString ? JSON.parse(startValueAsString) : 0)
+    const [maxValue, setMaxValue] = useState<number>(maxValueAsString ? JSON.parse(maxValueAsString) : 5)
     const [counterValue, setCounterValue] = useState<number>(startValue)
     const [error, setError] = useState<string>('')
     const incrementCounterValue = () => counterValue < maxValue && setCounterValue(counterValue + 1)
     const resetCounterValue = () => setCounterValue(startValue)
     const styleForCounterValue = `${s.standart} ${counterValue === maxValue ? s.red : s.green}`
-    const disabledResetButtonOrNot = counterValue === startValue
-    const disabledIncButtonOrNot = counterValue >= maxValue
+    const disabledResetButtonOrNot = counterValue === startValue || error !== ''
+    const disabledIncButtonOrNot = counterValue >= maxValue || error !== ''
     const valueHandler = (startValue: number, maxValue: number) => {
         setStartValue(startValue)
         setMaxValue(maxValue)
@@ -23,18 +25,9 @@ function App() {
         setError(error)
     }
     useEffect(() => {
-        const startValueAsString = localStorage.getItem('startValue')
-        const maxValueAsString = localStorage.getItem('maxValue')
-        if (startValueAsString && maxValueAsString) {
-            setStartValue(JSON.parse(startValueAsString))
-            setMaxValue(JSON.parse(maxValueAsString))
-        }
-    }, [])
-
-    useEffect(() => {
         localStorage.setItem('startValue', JSON.stringify(startValue))
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
-    }, [startValue, maxValue])
+    }, [startValue])
 
     return (
         <div className="App">
