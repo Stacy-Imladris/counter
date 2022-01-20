@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {SettingsCounter} from "./components/SettingsCounter/SettingsCounter";
-import {Paper, Stack, styled} from "@mui/material";
+import {Grid, Paper} from "@mui/material";
 import s from './components/Counter/Counter.module.css'
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     const styleForCounterValue = `${s.standart} ${counterValue === maxValue || error === 'Incorrect value!' ? s.red : s.green}`
     const disabledResetButtonOrNot = counterValue === startValue || error !== ''
     const disabledIncButtonOrNot = counterValue >= maxValue || error !== ''
-    const minValueHandler = (value: number) => {
+    const startValueHandler = (value: number) => {
         setStartValue(value)
         if (value < maxValue && value >= 0) {
             setError('Enter values and press \'set\'')
@@ -42,37 +42,33 @@ function App() {
         localStorage.setItem('startValue', JSON.stringify(startValue))
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
     }
-    const Item = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
 
     return (
-        <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" height={'500px'}>
-            <Item>
-                <SettingsCounter
-                    startValue={startValue}
-                    maxValue={maxValue}
-                    valueHandlerOnClick={valueHandlerOnClick}
-                    minValueHandler={minValueHandler}
-                    maxValueHandler={maxValueHandler}
-                    error={errorBoolean}
-                />
-            </Item>
-            <Item>
-                <Counter
-                    counterValue={counterValue}
-                    resetCounterValue={resetCounterValue}
-                    incrementCounterValue={incrementCounterValue}
-                    disabledResetButtonOrNot={disabledResetButtonOrNot}
-                    disabledIncButtonOrNot={disabledIncButtonOrNot}
-                    styleForCounterValue={styleForCounterValue}
-                    error={error}
-                />
-            </Item>
-        </Stack>
+        <Grid container direction="row" spacing={5} justifyContent="center" alignItems="center" height={'700px'}>
+            <Grid item>
+                <Paper elevation={3}>
+                    <SettingsCounter
+                        startValue={startValue}
+                        maxValue={maxValue}
+                        valueHandlerOnClick={valueHandlerOnClick}
+                        startValueHandler={startValueHandler}
+                        maxValueHandler={maxValueHandler}
+                        error={errorBoolean}/>
+                </Paper>
+            </Grid>
+            <Grid item>
+                <Paper elevation={3}>
+                    <Counter
+                        counterValue={counterValue}
+                        resetCounterValue={resetCounterValue}
+                        incrementCounterValue={incrementCounterValue}
+                        disabledResetButtonOrNot={disabledResetButtonOrNot}
+                        disabledIncButtonOrNot={disabledIncButtonOrNot}
+                        styleForCounterValue={styleForCounterValue}
+                        error={error}/>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 }
 

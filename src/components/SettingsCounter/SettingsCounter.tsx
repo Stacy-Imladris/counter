@@ -7,7 +7,7 @@ type SettingsCounterPropsType = {
     startValue: number
     maxValue: number
     valueHandlerOnClick: () => void
-    minValueHandler: (value: number) => void
+    startValueHandler: (value: number) => void
     maxValueHandler: (value: number) => void
     error: boolean
 }
@@ -19,7 +19,7 @@ export const SettingsCounter = (props: SettingsCounterPropsType) => {
                 <InputUniversal type={'number'} title={'max value: '} defaultValue={props.maxValue} getValue={props.maxValueHandler} style={props.error}/>
             </div>
             <div className={s.input}>
-                <InputUniversal type={'number'} title={'start value: '} defaultValue={props.startValue} getValue={props.minValueHandler} style={props.error}/>
+                <InputUniversal type={'number'} title={'start value: '} defaultValue={props.startValue} getValue={props.startValueHandler} style={props.error}/>
             </div>
             <div className={s.button}>
                 <ButtonUniversal name={'set'} disabledButtonOrNot={props.error} onClickCallback={props.valueHandlerOnClick}/>
