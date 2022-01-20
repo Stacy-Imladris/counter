@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import s from './InputUniversal.module.css'
+import {TextField} from "@mui/material";
 
 type InputUniversalPropsType = {
     type: string
@@ -12,16 +12,24 @@ type InputUniversalPropsType = {
 export const InputUniversal = (props: InputUniversalPropsType) => {
     const [value, setValue] = useState<number>(props.defaultValue)
 
-    const onChangeCallback = (e:ChangeEvent<HTMLInputElement>) => {
+    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(Number(e.currentTarget.value))
         props.getValue(Number(e.currentTarget.value))
     }
-    const inputStyle = `${s.standart} ${props.style ? s.error : ''}`
 
     return (
         <div>
-            <span>{props.title}</span>
-            <input value={value} type={props.type} onChange={onChangeCallback} className={inputStyle}/>
+            <TextField
+                error={props.style}
+                onChange={onChangeCallback}
+                value={value}
+                id="outlined-number"
+                label={props.title}
+                type="number"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+            />
         </div>
     );
 };

@@ -1,4 +1,4 @@
-.container {
+.settings {
     height: 250px;
     width: 350px;
     display: flex;
@@ -7,22 +7,10 @@
     align-items: center;
 }
 
-.buttons {
-    display: flex;
+.input {
+    margin: 10px;
 }
 
 .button {
     margin: 10px;
-}
-
-.standart {
-    font-size: 40px;
-}
-
-.green {
-    color: green;
-}
-
-.red {
-    color: red;
 }

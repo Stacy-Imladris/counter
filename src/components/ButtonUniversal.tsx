@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from "@mui/material";
 
 type ButtonUniversalPropsType = {
     name: string
@@ -7,18 +8,15 @@ type ButtonUniversalPropsType = {
 }
 
 export const ButtonUniversal = (props: ButtonUniversalPropsType) => {
-
     const onClickCallback = () => {
         props.onClickCallback()
     }
 
     return (
         <div>
-            <button
-                disabled={props.disabledButtonOrNot}
-                onClick={onClickCallback}>
+            <Button variant="contained" onClick={onClickCallback} disabled={props.disabledButtonOrNot}>
                 {props.name}
-            </button>
+            </Button>
         </div>
     )
 }
