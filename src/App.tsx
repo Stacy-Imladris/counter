@@ -35,8 +35,6 @@ function App() {
         }
     }
     const valueHandlerOnClick = () => {
-        setStartValue(startValue)
-        setMaxValue(maxValue)
         setCounterValue(startValue)
         setError('')
         localStorage.setItem('startValue', JSON.stringify(startValue))
