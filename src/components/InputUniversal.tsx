@@ -13,8 +13,8 @@ export const InputUniversal = (props: InputUniversalPropsType) => {
     const [value, setValue] = useState<number>(props.defaultValue)
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(Number(e.currentTarget.value))
-        props.getValue(Number(e.currentTarget.value))
+        setValue(+e.currentTarget.value)
+        props.getValue(+e.currentTarget.value)
     }
 
     return (
