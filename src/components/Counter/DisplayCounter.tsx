@@ -8,7 +8,7 @@ type DisplayCounterPropsType = {
 export const DisplayCounter = (props: DisplayCounterPropsType) => {
     return (
         <div>
-            {props.error === 'Incorrect value!' ? 'Incorrect value!' : props.error === '' ? props.counterValue : 'Enter values and press \'set\''}
+            {props.error === '' ? props.counterValue : props.error}
         </div>
     )
 }

@@ -4,7 +4,7 @@ import {Button} from "@mui/material";
 type ButtonUniversalPropsType = {
     name: string
     onClickCallback: () => void
-    disabledButtonOrNot: boolean
+    isButtonDisabled: boolean
 }
 
 export const ButtonUniversal = (props: ButtonUniversalPropsType) => {
@@ -14,7 +14,7 @@ export const ButtonUniversal = (props: ButtonUniversalPropsType) => {
 
     return (
         <div>
-            <Button variant="contained" onClick={onClickCallback} disabled={props.disabledButtonOrNot} color={'secondary'}>
+            <Button variant="contained" onClick={onClickCallback} disabled={props.isButtonDisabled} color={'secondary'}>
                 {props.name}
             </Button>
         </div>

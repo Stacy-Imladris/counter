@@ -9,20 +9,21 @@ type SettingsCounterPropsType = {
     valueHandlerOnClick: () => void
     startValueHandler: (value: number) => void
     maxValueHandler: (value: number) => void
-    error: boolean
+    isInputStyleError: boolean
+    isSetButtonDisabled: boolean
 }
 
 export const SettingsCounter = (props: SettingsCounterPropsType) => {
     return (
         <div className={s.settings}>
             <div className={s.input}>
-                <InputUniversal type={'number'} title={'max value: '} defaultValue={props.maxValue} getValue={props.maxValueHandler} style={props.error}/>
+                <InputUniversal type={'number'} title={'max value: '} defaultValue={props.maxValue} getValue={props.maxValueHandler} style={props.isInputStyleError}/>
             </div>
             <div className={s.input}>
-                <InputUniversal type={'number'} title={'start value: '} defaultValue={props.startValue} getValue={props.startValueHandler} style={props.error}/>
+                <InputUniversal type={'number'} title={'start value: '} defaultValue={props.startValue} getValue={props.startValueHandler} style={props.isInputStyleError}/>
             </div>
             <div className={s.button}>
-                <ButtonUniversal name={'set'} disabledButtonOrNot={props.error} onClickCallback={props.valueHandlerOnClick}/>
+                <ButtonUniversal name={'set'} isButtonDisabled={props.isSetButtonDisabled} onClickCallback={props.valueHandlerOnClick}/>
             </div>
         </div>
     );

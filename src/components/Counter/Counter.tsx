@@ -7,8 +7,8 @@ type CounterPropsType = {
     counterValue: number
     resetCounterValue: () => void
     incrementCounterValue: () => void
-    disabledResetButtonOrNot: boolean
-    disabledIncButtonOrNot: boolean
+    isResetButtonDisabled: boolean
+    isIncButtonDisabled: boolean
     styleForCounterValue: string
     error: string
 }
@@ -24,14 +24,14 @@ export const Counter = (props: CounterPropsType) => {
                     <ButtonUniversal
                         name={'inc'}
                         onClickCallback={props.incrementCounterValue}
-                        disabledButtonOrNot={props.disabledIncButtonOrNot}
+                        isButtonDisabled={props.isIncButtonDisabled}
                     />
                 </div>
                 <div className={s.button}>
                     <ButtonUniversal
                         name={'reset'}
                         onClickCallback={props.resetCounterValue}
-                        disabledButtonOrNot={props.disabledResetButtonOrNot}
+                        isButtonDisabled={props.isResetButtonDisabled}
                     />
                 </div>
             </div>

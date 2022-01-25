@@ -12,12 +12,13 @@ function App() {
     const [maxValue, setMaxValue] = useState<number>(maxValueAsString ? JSON.parse(maxValueAsString) : 5)
     const [counterValue, setCounterValue] = useState<number>(startValue)
     const [error, setError] = useState<string>('')
-    const errorBoolean = error === 'Incorrect value!'
+    const isInputStyleError = error === 'Incorrect value!'
+    const isResetButtonDisabled = counterValue === startValue || error !== ''
+    const isIncButtonDisabled = counterValue >= maxValue || error !== ''
+    const isSetButtonDisabled = error !== 'Enter values and press \'set\''
     const incrementCounterValue = () => counterValue < maxValue && setCounterValue(counterValue + 1)
     const resetCounterValue = () => setCounterValue(startValue)
     const styleForCounterValue = `${s.standart} ${counterValue === maxValue || error === 'Incorrect value!' ? s.red : s.green}`
-    const disabledResetButtonOrNot = counterValue === startValue || error !== ''
-    const disabledIncButtonOrNot = counterValue >= maxValue || error !== ''
     const startValueHandler = (value: number) => {
         setStartValue(value)
         if (value < maxValue && value >= 0) {
@@ -51,7 +52,8 @@ function App() {
                         valueHandlerOnClick={valueHandlerOnClick}
                         startValueHandler={startValueHandler}
                         maxValueHandler={maxValueHandler}
-                        error={errorBoolean}/>
+                        isInputStyleError={isInputStyleError}
+                        isSetButtonDisabled={isSetButtonDisabled}/>
                 </Paper>
             </Grid>
             <Grid item>
@@ -60,10 +62,10 @@ function App() {
                         counterValue={counterValue}
                         resetCounterValue={resetCounterValue}
                         incrementCounterValue={incrementCounterValue}
-                        disabledResetButtonOrNot={disabledResetButtonOrNot}
-                        disabledIncButtonOrNot={disabledIncButtonOrNot}
+                        error={error}
                         styleForCounterValue={styleForCounterValue}
-                        error={error}/>
+                        isResetButtonDisabled={isResetButtonDisabled}
+                        isIncButtonDisabled={isIncButtonDisabled}/>
                 </Paper>
             </Grid>
         </Grid>
