@@ -9,7 +9,7 @@ type InputUniversalPropsType = {
     style: boolean
 }
 
-export const InputUniversal = (props: InputUniversalPropsType) => {
+export const InputUniversal = React.memo((props: InputUniversalPropsType) => {
     const [value, setValue] = useState<number>(props.defaultValue)
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,5 +31,5 @@ export const InputUniversal = (props: InputUniversalPropsType) => {
                 }}
             />
         </div>
-    );
-};
+    )
+})

@@ -7,7 +7,7 @@ type ButtonUniversalPropsType = {
     isButtonDisabled: boolean
 }
 
-export const ButtonUniversal = (props: ButtonUniversalPropsType) => {
+export const ButtonUniversal = React.memo((props: ButtonUniversalPropsType) => {
     const onClickCallback = () => {
         props.onClickCallback()
     }
@@ -19,4 +19,4 @@ export const ButtonUniversal = (props: ButtonUniversalPropsType) => {
             </Button>
         </div>
     )
-}
+})
